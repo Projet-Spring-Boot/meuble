@@ -72,8 +72,8 @@ sonarcloud:
       key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
       restore-keys: ${{ runner.os }}-m2
 
-    - name: SonarCloud Scan
-      run: mvn -B verify sonar:sonar -Dsonar.projectKey=Projet-Spring-Boot_Meuble -Dsonar.organization=projet-spring-boot-meuble -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  - name: SonarCloud Scan
+    run: mvn -B verify sonar:sonar -Dsonar.projectKey=Projet-Spring-Boot_Meuble -Dsonar.organization=projet-spring-boot-meuble -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
