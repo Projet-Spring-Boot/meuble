@@ -45,35 +45,35 @@ jobs:
         run: docker push louisonsarlinmagnus/meuble:latest
           
           
-sonarcloud:
-  name: Analyse SonarCloud
-  runs-on: ubuntu-latest
-  steps:
+  sonarcloud:
+    name: Analyse SonarCloud
+    runs-on: ubuntu-latest
+    steps:
 
-  - name: Checkout master branch
-    uses: actions/checkout@v2
+    - name: Checkout master branch
+      uses: actions/checkout@v2
 
-  - name: Setup JDK 1.8
-    uses: actions/setup-java@v1
-    with:
-      java-version: 1.8
+    - name: Setup JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
 
-  - name: Cache SonarCloud packages
-    uses: actions/cache@v1
-    with:
-      path: ~/.sonar/cache
-      key: ${{ runner.os }}-sonar
-      restore-keys: ${{ runner.os }}-sonar
+    - name: Cache SonarCloud packages
+      uses: actions/cache@v1
+      with:
+        path: ~/.sonar/cache
+        key: ${{ runner.os }}-sonar
+        restore-keys: ${{ runner.os }}-sonar
 
-  - name: Cache Maven packages
-    uses: actions/cache@v2
-    with:
-      path: ~/.m2
-      key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-      restore-keys: ${{ runner.os }}-m2
+    - name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
 
-  - name: SonarCloud Scan
-    run: mvn -B verify sonar:sonar -Dsonar.projectKey=Projet-Spring-Boot_Meuble -Dsonar.organization=projet-spring-boot-meuble -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: SonarCloud Scan
+      run: mvn -B verify sonar:sonar -Dsonar.projectKey=Projet-Spring-Boot_Meuble -Dsonar.organization=projet-spring-boot-meuble -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
