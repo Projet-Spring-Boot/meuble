@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+	<div th:fragment="navbar">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#" th:href="@{/}"> <img alt="home"
+					src="images/home.png" width="25" height="25"
+					th:src="@{../../images/home.png}" />
+				</a>
+				<ul class="nav navbar-nav">
+					<li><a th:if="${#request.userPrincipal != null}"
+						sec:authorize="hasRole('ADMIN')" href="#" th:href="@{/admin}">Admin</a></li>
+
+					<li><a th:if="${#request.userPrincipal != null}" href="#"
+						th:href="@{/userInfo}">My account</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a th:if="${#request.userPrincipal == null}" href="#"
+						th:href="@{/signup}"> <span class="glyphicon glyphicon-user"></span>
+							Sign Up
+					</a></li>
+					<li><a th:if="${#request.userPrincipal == null}" href="#"
+						th:href="@{/login}"> <span class="glyphicon glyphicon-log-in"></span>
+							Login
+					</a></li>
+					<li><a th:if="${#request.userPrincipal != null}" href="#"
+						th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</body>
+</html>

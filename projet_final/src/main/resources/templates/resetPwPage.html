@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+	<link href="../../static/css/login.css" th:href="@{../css/login.css}" rel="stylesheet" media="screen" type="text/css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.css" th:href="@{/webjars/font-awesome/5.15.1/css/all.css}" rel="stylesheet" type="text/css" />
+	
+
+
+
+<title>Sign In</title>
+
+<style>
+.error-message {
+	font-size: 90%;
+	font-style: italic;
+	color: red;
+}
+</style>
+
+</head>
+<body>
+	<div id="particles-js">
+		<!--/*/ <th:block th:include="fragments/navbar :: navbar"></th:block> /*/-->
+		
+		<!-- TEST -->
+		<div class="login-area particles-absolute">
+	        <div class="bg-image">
+	            <div class="login-signup">
+	                <div class="container">
+	                	
+	                    <div class="login-header">
+	                    	<h1 style="color:white;">Reset Password</h1>
+	                    </div>
+						
+	                    <div class="tab-content">
+	                        <div id="register" class="tab-pane active">
+	                           <div class="login-inner">
+									<label>Entrer votre adresse email :</label>
+									
+	                                <div class="login-form">
+                                        <div class="form-details">
+                                        	<div class="form-group">
+												<span><i class="fa fa-envelope"></i></span>
+												<input type="text" name="email" placeholder="Email Address">
+											</div>
+											<div class="form-group">
+												<button class="form-btn" type="button" style="margin-bottom: 0px; margin-top: 55px;">Send</button>
+											</div>
+                                        </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- FIN TEST -->
+    
+	</div>
+
+</body>
+</html>
