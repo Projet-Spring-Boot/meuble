@@ -1,307 +1,169 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8">
-<title>Social media viewer - feed</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style type="text/css">
-body {
-	margin-top: 20px;
-	background: #ebeef0;
-}
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<link href="../../static/css/login.css" th:href="@{../css/login.css}"
+	rel="stylesheet" media="screen" type="text/css" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.css"
+	th:href="@{/webjars/font-awesome/5.15.1/css/all.css}" rel="stylesheet"
+	type="text/css" />
 
-.img-sm {
-	width: 46px;
-	height: 46px;
-}
 
-.panel {
-	box-shadow: 0 2px 0 rgba(0, 0, 0, 0.075);
-	border-radius: 0;
-	border: 0;
-	margin-bottom: 15px;
-}
+<title>Feed</title>
 
-.panel .panel-footer, .panel>:last-child {
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-}
-
-.panel .panel-heading, .panel>:first-child {
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-}
-
-.panel-body {
-	padding: 25px 20px;
-}
-
-.media-block .media-left {
-	display: block;
-	float: left
-}
-
-.media-block .media-right {
-	float: right
-}
-
-.media-block .media-body {
-	display: block;
-	overflow: hidden;
-	width: auto
-}
-
-.middle .media-left, .middle .media-right, .middle .media-body {
-	vertical-align: middle
-}
-
-.thumbnail {
-	border-radius: 0;
-	border-color: #e9e9e9
-}
-
-.tag.tag-sm, .btn-group-sm>.tag {
-	padding: 5px 10px;
-}
-
-.tag:not(.label) {
-	background-color: #fff;
-	padding: 6px 12px;
-	border-radius: 2px;
-	border: 1px solid #cdd6e1;
-	font-size: 12px;
-	line-height: 1.42857;
-	vertical-align: middle;
-	-webkit-transition: all .15s;
-	transition: all .15s;
-}
-
-.text-muted, a.text-muted:hover, a.text-muted:focus {
-	color: #acacac;
-}
-
-.text-sm {
-	font-size: 0.9em;
-}
-
-.text-5x, .text-4x, .text-5x, .text-2x, .text-lg, .text-sm, .text-xs {
-	line-height: 1.25;
-}
-
-.btn-trans {
-	background-color: transparent;
-	border-color: transparent;
-	color: #929292;
-}
-
-.btn-icon {
-	padding-left: 9px;
-	padding-right: 9px;
-}
-
-.btn-sm, .btn-group-sm>.btn, .btn-icon.btn-sm {
-	padding: 5px 10px !important;
-}
-
-.mar-top {
-	margin-top: 15px;
+<style>
+.error-message {
+	font-size: 90%;
+	font-style: italic;
+	color: red;
 }
 </style>
+
 </head>
 <body>
-	<link
-		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-		rel="stylesheet">
-	<div class="container bootdey">
-		<div class="col-md-12 bootstrap snippets">
-			<div class="panel">
-				<div class="panel-body">
+	<div id="particles-js">
+		<!--/*/ <th:block th:include="fragments/navbar :: navbar"></th:block> /*/-->
 
-					<textarea class="form-control" rows="2"
-						placeholder="Share your mood"></textarea>
-					<div class="mar-top clearfix">
-						<button class="btn btn-sm btn-primary pull-right" type="submit">
-							<i class="fa fa-pencil fa-fw"></i> Share
-						</button>
-						
-						<a class="btn-floating btn-lg btn-facebook pull-right"
-							type="button" role="button"><i class="fab fa-facebook-f"></i></a>
-						<a class="btn-floating btn-lg btn-twitter pull-right"
-							type="button" role="button"><i class="fab fa-twitter"></i></a> <a
-							class="btn btn-trans btn-icon fa fa-video-camera add-tooltip"
-							href="#"></a> <a
-							class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"
-							th:object="${image}" th:action="@{/uploadImage}" method="POST"></a>
-						<form th:object="${image}" th:action="@{/uploadImage}"
-							method="POST"></form>
-						<a class="btn btn-trans btn-icon fa fa-file add-tooltip" href="#"></a>
-					</div>
-				</div>
-			</div>
-			<div class="panel">
-				<div class="panel-body">
-					<!-- Newsfeed Content -->
-					<!--===================================================-->
-					<div class="media-block">
-						<a class="media-left" href="#"><img class="img-circle img-sm"
-							alt="Profile Picture"
-							src="https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png"></a>
-						<div class="media-body">
-							<div class="mar-btm">
-								<a href="#"
-									class="btn-link text-semibold media-heading box-inline">User
-									1</a>
-								<p class="text-muted text-sm">
-									<i class="fa fa-mobile fa-lg"></i> - From Mobile - 11 min ago
-								</p>
-							</div>
-							<p>contenu du poste</p>
-							<div class="pad-ver">
-								<div class="btn-group">
-									<a class="btn btn-sm btn-default btn-hover-success" href="#"><i
-										class="fa fa-thumbs-up"></i></a> <a
-										class="btn btn-sm btn-default btn-hover-danger" href="#"><i
-										class="fa fa-thumbs-down"></i></a>
-								</div>
-								<a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
-							</div>
-							<hr>
 
-							<!-- Comments -->
-							<div>
-								<div class="media-block">
-									<a class="media-left" href="#"><img
-										class="img-circle img-sm" alt="Profile Picture"
-										src="https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png"></a>
-									<div class="media-body">
-										<div class="mar-btm">
-											<a href="#"
-												class="btn-link text-semibold media-heading box-inline">Bobby
-												Marz</a>
-											<p class="text-muted text-sm">
-												<i class="fa fa-mobile fa-lg"></i> - From Mobile - 7 min ago
-											</p>
-										</div>
-										<p>commentaire</p>
-										<div class="pad-ver">
-											<div class="btn-group">
-												<a class="btn btn-sm btn-default btn-hover-success active"
-													href="#"><i class="fa fa-thumbs-up"></i> You Like it</a> <a
-													class="btn btn-sm btn-default btn-hover-danger" href="#"><i
-													class="fa fa-thumbs-down"></i></a>
-											</div>
-											<a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
-										</div>
-										<hr>
+
+		<!-- TEST -->
+		<div class="login-area particles-absolute">
+			<div class="bg-image">
+				<div class="login-signup">
+					<div class="container">
+						<div class="login-header">
+							<div class="row">
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<div class="login-logo">
+										<img alt="login_logo" src="images/login.png" width="25"
+											height="25" th:src="@{../../images/login.png}"
+											class="img-responsive" />
 									</div>
 								</div>
 
-								<div class="media-block">
-									<a class="media-left" href="#"><img
-										class="img-circle img-sm" alt="Profile Picture"
-										src="https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png">
-									</a>
-									<div class="media-body">
-										<div class="mar-btm">
-											<a href="#"
-												class="btn-link text-semibold media-heading box-inline">User</a>
-											<p class="text-muted text-sm">
-												<i class="fa fa-globe fa-lg"></i> - From Web - 2 min ago
-											</p>
-										</div>
-										<p></p>
-										<div class="pad-ver">
-											<div class="btn-group">
-												<a class="btn btn-sm btn-default btn-hover-success" href="#"><i
-													class="fa fa-thumbs-up"></i></a> <a
-													class="btn btn-sm btn-default btn-hover-danger" href="#"><i
-													class="fa fa-thumbs-down"></i></a>
+							</div>
+
+
+						</div>
+
+						<div class="tab-content">
+							<div id="register" class="tab-pane active">
+								<div class="login-inner">
+
+									<div class="title">
+										<h1>
+											Send<span> message</span>
+										</h1>
+									</div>
+
+									<div class="login-form">
+										<form th:object="${messageForm}" th:action="@{/twitterfeed/sendMessage}"
+											method="POST">
+											<div class="form-details">
+
+												<textarea name="w3review" rows="4" cols="50"
+													th:field="*{message}"></textarea>
 											</div>
-											<a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
-										</div>
-										<hr>
+											<input class="form-btn" name="submit" type="submit"
+												value="submit" />
+										</form>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<!--===================================================-->
-					<!-- End Newsfeed Content -->
+						<div th:each="flowUtils: ${flowsUtils}">
+							<!--  DEBUT -->
+							<div class="login-area">
+								<div class="bg-image">
+									<div class="login-signup">
+										<div class="container">
+											<div class="login-header">
+												<div class="row">
+													<div class="col-md-6 col-sm-6 col-xs-12">
+														<div class="login-logo">
+															<img alt="login_logo" width="25" height="25"
+																th:src="${flowUtils.flow.user_img}" class="img-responsive" />
+
+															<div class="title">
+																<h1>
+																	<span th:text="${flowUtils.flow.user_name}"></span>
+																</h1>
+															</div>
+														</div>
+													</div>
+
+												</div>
 
 
-					<!-- Newsfeed Content -->
-					<!--===================================================-->
-					<div class="media-block pad-all">
-						<a class="media-left" href="#"><img class="img-circle img-sm"
-							alt="Profile Picture"
-							src="https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png"></a>
-						<div class="media-body">
-							<div class="mar-btm">
-								<a href="#"
-									class="btn-link text-semibold media-heading box-inline">John
-									Doe</a>
-								<p class="text-muted text-sm">
-									<i class="fa fa-mobile fa-lg"></i> - From Mobile - 11 min ago
-								</p>
-							</div>
-							<p>Lorem ipsum dolor sit amet.</p>
-							<img class="img-responsive thumbnail"
-								src="https://via.placeholder.com/400x300" alt="Image">
-							<div class="pad-ver">
-								<span class="tag tag-sm"><i
-									class="fa fa-heart text-danger"></i> 250 Likes</span>
-								<div class="btn-group">
-									<a class="btn btn-sm btn-default btn-hover-success" href="#"><i
-										class="fa fa-thumbs-up"></i></a> <a
-										class="btn btn-sm btn-default btn-hover-danger" href="#"><i
-										class="fa fa-thumbs-down"></i></a>
-								</div>
-								<a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
-							</div>
-							<hr>
-
-							<!-- Comments -->
-							<div>
-								<div class="media-block pad-all">
-									<a class="media-left" href="#"><img
-										class="img-circle img-sm" alt="Profile Picture"
-										src="https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png"></a>
-									<div class="media-body">
-										<div class="mar-btm">
-											<a href="#"
-												class="btn-link text-semibold media-heading box-inline">Maria
-												Leanz</a>
-											<p class="text-muted text-sm">
-												<i class="fa fa-globe fa-lg"></i> - From Web - 2 min ago
-											</p>
-										</div>
-										<p></p>
-										<div>
-											<div class="btn-group">
-												<a class="btn btn-sm btn-default btn-hover-success" href="#"><i
-													class="fa fa-thumbs-up"></i></a> <a
-													class="btn btn-sm btn-default btn-hover-danger" href="#"><i
-													class="fa fa-thumbs-down"></i></a>
 											</div>
-											<a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
+
+											<div class="tab-content">
+												<div id="register" class="tab-pane active">
+													<div class="login-inner">
+
+														<div class="title">
+															<h1 th:text="${flowUtils.flow.published_content}"></h1>
+														</div>
+
+														<div class="login-form">
+
+
+															<!--  DEBUT CONTENT -->
+
+															<div th:if="${!flowUtils.mediasUtils.empty}"
+																class="media-block pad-all">
+
+																<div th:each="mediaUtils: ${flowUtils.mediasUtils}">
+																
+																	<div class="media-body">
+																		<img class="img-responsive thumbnail"
+																			th:src="${mediaUtils.mediaUrl}" alt="Image">
+																		<hr>
+																	</div>
+																</div>
+
+															</div>
+															<!-- FIN CONTENT -->
+														</div>
+													</div>
+												</div>
+
+
+
+											</div>
+
+
+
+
+
 										</div>
 									</div>
 								</div>
 							</div>
+							<!-- FIN -->
+
+
 						</div>
+
+
+
+
+
+
+
 					</div>
-					<!--===================================================-->
-					<!-- End Newsfeed Content -->
 				</div>
 			</div>
 		</div>
+
+		<!-- FIN TEST -->
+
+
+
+
 	</div>
-	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script
-		src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-	
-</script>
+
 </body>
 </html>
