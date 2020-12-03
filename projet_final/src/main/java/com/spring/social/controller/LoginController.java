@@ -10,7 +10,6 @@ public class LoginController {
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public String login(Model model) {
 
-		// model.addAttribute("host", "http://localhost:8081/login");
 		return "loginPage";
 	}
 

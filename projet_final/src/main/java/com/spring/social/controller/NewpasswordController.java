@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.social.configuration.MicroserviceProperties;
 import com.spring.social.dao.AppUserDAO;
 import com.spring.social.entity.AppUser;
 import com.spring.social.form.ChangePasswordForm;
@@ -23,13 +24,16 @@ public class NewpasswordController {
 	@Autowired
 	AppUserDAO appUserDao;
 	
+	@Autowired
+	MicroserviceProperties microserviceProperties;
+	
 	
 	@RequestMapping(value = { "/newpassword" }, method = RequestMethod.GET)
 	public String changePasswordGet(Model model, Principal principal) {
 		AppUser appUser = appUserDao.findAppUserByUserName(principal.getName());
 
-		//model.addAttribute("host", "http://localhost:8081/login");
 		model.addAttribute("encryptedPassword", appUser.getEncrytedPassword());
+		model.addAttribute("microserviceProperties", microserviceProperties);
 		return "newpassword";
 	}
 	
