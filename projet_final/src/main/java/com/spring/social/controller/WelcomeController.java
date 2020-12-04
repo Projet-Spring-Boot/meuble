@@ -21,7 +21,7 @@ public class WelcomeController {
 	public String welcomePage(Model model, Principal principal) {
 		model.addAttribute("title", "Welcome");
 		if(principal != null) {
-			return "redirect:/sendMessage";
+			return "redirect:/twitterfeed";
 		}
 		return "welcomePage";
 	}
