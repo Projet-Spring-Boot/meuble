@@ -19,6 +19,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.social.dao.AppUserDAO;
+import com.spring.social.dao.InfoConnectionDAO;
 import com.spring.social.entity.AppRole;
 import com.spring.social.entity.AppUser;
 import com.spring.social.form.AppUserForm;
@@ -36,6 +37,9 @@ public class SignUpController {
 
 	@Autowired
 	private UsersConnectionRepository connectionRepository;
+	
+	@Autowired
+	private InfoConnectionDAO infoConnectionDAO;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String signupPage(WebRequest request, Model model) {
@@ -87,7 +91,9 @@ public class SignUpController {
 			providerSignInUtils.doPostSignUp(registered.getUserName(), request);
 
 		}
-
+		
+		infoConnectionDAO.CreateInfoConnection(registered.getUserId());
+		
 		// login auto après la création du compte
 		SecurityAuto.logInUser(registered, roleNames);
 

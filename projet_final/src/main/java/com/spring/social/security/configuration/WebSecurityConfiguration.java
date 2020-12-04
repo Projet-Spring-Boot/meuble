@@ -19,6 +19,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	CustomLogoutSuccessHandler customLogoutSuccessHandler;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -54,11 +57,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username").passwordParameter("password");
 
 		// Logout Config
-		http.authorizeRequests().and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
+		http.authorizeRequests().and().logout().logoutSuccessHandler(customLogoutSuccessHandler).logoutUrl("/logout").logoutSuccessUrl("/");
 
 		// Spring Social Config.
 		http.apply(new SpringSocialConfigurer()).signupUrl("/signup");
-
 	}
 
 	// This bean is load the user specific data when form login is used.
