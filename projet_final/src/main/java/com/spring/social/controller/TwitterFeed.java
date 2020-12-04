@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -118,8 +119,8 @@ public class TwitterFeed {
 	}
 
 	@RequestMapping(value = "/updateFlow", method = RequestMethod.POST)
+	@Cacheable("FLOW")
 	public Map<String, Flow> updateFlow(@RequestBody String username) {
-
 		Map<String, Flow> mapFlow = null;
 
 		// [Step 1] : Set up Twitter4j
