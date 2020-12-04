@@ -1,6 +1,7 @@
 package com.spring.social.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
@@ -14,11 +15,11 @@ import com.spring.social.model.Flow;
 
 @Configuration
 @EnableRedisRepositories
+@EnableCaching
 public class RedisConfig {
 	
 	@Autowired
 	RedisProperties redisProperties;
-	
 	
     @Bean
     public JedisConnectionFactory connectionFactory()
@@ -26,6 +27,7 @@ public class RedisConfig {
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
         configuration.setHostName(redisProperties.getHost());
         configuration.setPort(redisProperties.getPort());
+        configuration.setPassword(redisProperties.getPassword());
         return new JedisConnectionFactory(configuration);
     }
 

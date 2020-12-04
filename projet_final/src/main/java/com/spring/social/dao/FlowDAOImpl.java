@@ -24,8 +24,8 @@ public class FlowDAOImpl implements FlowDAO {
 
     @Override
     public void save(Flow flow) {
+    	System.out.println("called save() from DB");
         hashOperations.put("FLOW", flow.getId(), flow);
-
     }
 
     @Override
@@ -36,7 +36,6 @@ public class FlowDAOImpl implements FlowDAO {
 
     @Override
     public Flow findById(String id) {
-
         return (Flow) hashOperations.get("FLOW", id);
     }
 

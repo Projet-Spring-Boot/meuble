@@ -35,12 +35,7 @@ public class CustomLogoutSuccessHandler extends
 		
 		
 		AppUser user = appUserDAO.findAppUserByUserName(authentication.getName());
-		
-		System.out.println("COUCOU1");
 		long max = infoConnectionDAO.getMaxConnectionIdByUserId(user.getUserId());
-		System.out.println("max connection id : "+ max);
 		infoConnectionDAO.AddLogout(max);
-		System.out.println("COUCOU2");
-
 	}
 }

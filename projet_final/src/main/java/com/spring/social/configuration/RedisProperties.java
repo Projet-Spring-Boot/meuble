@@ -12,6 +12,7 @@ public class RedisProperties {
 
 	private String host;
 	private int port;
+	private String password;
 	
 	public String getHost() {
 		return host;
@@ -25,7 +26,10 @@ public class RedisProperties {
 	public void setPort(int port) {
 		this.port = port;
 	}
-
-	
-
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPassword() {
+		return password;
+	}
 }
