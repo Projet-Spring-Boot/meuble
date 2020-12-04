@@ -54,24 +54,7 @@ public class TwitterFeed {
 
 		Map<String, Flow> mapFlow = updateFlow(principal.getName());
 
-		mapFlow.forEach((key, value) -> {
-			System.out.println("===key: ===\n" + key);
-			System.out.println("===value :===");
-			System.out.println("id : " + value.getId());
-			System.out.println("published_content : " + value.getPublished_content());
-			System.out.println("date : " + value.getPublishing());
-			System.out.println("user image :" + value.getUser_img());
-			System.out.println("media :");
-			value.getPublished_media().forEach(media -> {
-				System.out.println("\t" + media);
-			});
-
-			System.out.println();
-			System.out.println();
-			System.out.println("*******************************************************");
-			System.out.println();
-			System.out.println();
-		});
+		
 		
 		List<Flow> listFlow = new ArrayList<Flow>(mapFlow.values());
 		model.addAttribute("messageForm", new MessageForm());
